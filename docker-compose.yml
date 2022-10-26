@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  marks-app:
+    build: .
+    restart: always
+    container_name: 'sportisimo-marks-app'
+    ports:
+      - "80:80"

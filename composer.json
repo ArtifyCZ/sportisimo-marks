@@ -1,0 +1,16 @@
+{
+    "name": "artify/sportisimo-marks",
+    "require": {
+    },
+    "authors": [
+        {
+            "name": "Richard Tichý",
+            "email": "richard.tichy@mensa.cz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Marks\\": "src/"
+        }
+    }
+}
