@@ -1,6 +1,16 @@
 {
     "name": "artify/sportisimo-marks",
     "require": {
+        "nette/di": "^3.0",
+        "nette/application": "^3.1",
+        "nette/forms": "^3.1",
+        "nette/http": "^3.1",
+        "nette/utils": "^3.2",
+        "nette/routing": "^3.0",
+        "nette/database": "^3.1",
+        "latte/latte": "^3.0",
+        "tracy/tracy": "^2.9",
+        "nette/bootstrap": "^3.1"
     },
     "authors": [
         {
@@ -11,6 +21,11 @@
     "autoload": {
         "psr-4": {
             "Marks\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.1"
         }
     }
 }

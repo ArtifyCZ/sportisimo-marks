@@ -1,0 +1,4 @@
+application:
+    errorPresenter: Error
+    mapping:
+        *: Marks\Presenters\*Presenter

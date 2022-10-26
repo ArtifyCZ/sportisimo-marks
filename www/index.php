@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-if(@!include __DIR__ . '/../vendor/autoload.php') {
+if(@!include (dirname(__DIR__ . '../') . '/vendor/autoload.php')) {
     die('Install dependencies using `composer update`');
 }
 
-$configurator = Marks\Bootstrap::boot();
-die('Index');
+Marks\Bootstrap::boot()
+    ->createContainer()
+    ->getByType(Nette\Application\Application::class)
+    ->run();

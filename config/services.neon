@@ -1,0 +1,2 @@
+services:
+    - Marks\Router\RouterFactory::createRouter

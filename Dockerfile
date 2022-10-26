@@ -1,34 +1,30 @@
-FROM nginx:stable-alpine
+FROM php:fpm-bullseye
 LABEL Maintainer="Richard Tichý <richard.tichy@mensa.cz>"
 WORKDIR /var/www-marks
 
-RUN apk update --no-cache
+RUN apt update
 
-RUN apk add --no-cache \
-      curl \
-      nginx \
-      php81 \
-      php81-ctype \
-      php81-curl \
-      php81-dom \
-      php81-fpm \
-      php81-gd \
-      php81-intl \
-      php81-mbstring \
-      php81-mysqli \
-      php81-opcache \
-      php81-openssl \
-      php81-phar \
-      php81-session \
-      composer
+RUN apt install git zip -y
 
-COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
 
-COPY config/php/fmp-pool.conf /etc/php81/php-fpm.d/www.conf
-COPY config/php/php.ini /etc/php81/conf.d/custom.ini
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+
+RUN php composer.phar install
 
 COPY . /var/www-marks
 
-EXPOSE 80
+ENV DEBUG="FALSE"
 
-ENTRYPOINT php-fpm81 -F -R& nginx -g 'daemon off;'& wait
+RUN mkdir /var/log/www-marks
+
+RUN chmod -R a+rw /var/log/www-marks
+
+ENTRYPOINT rm -rf /tmp/www-marks &&\
+    mkdir /tmp/www-marks /tmp/www-marks/nette-temp &&\
+    chmod -R a+rw /var/log/www-marks /tmp/www-marks &&\
+    php-fpm -R
