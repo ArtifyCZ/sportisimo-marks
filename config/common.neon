@@ -2,3 +2,9 @@ application:
     errorPresenter: Error
     mapping:
         *: [Marks\Presenters, *, *\*Presenter]
+
+search:
+    section:
+        in: %appDir%
+        classes:
+            - *Facade

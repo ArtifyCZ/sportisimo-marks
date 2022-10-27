@@ -13,18 +13,21 @@ class Bootstrap
         $configurator = new Configurator();
 
         $appDir = dirname(__DIR__);
+
+        $configurator->addConfig($appDir . '/config/common.neon');
+        $configurator->addConfig($appDir . '/config/services.neon');
+
         if($debug) {
+            $configurator->addConfig($appDir . '/config/credentials.dev.neon');
             $configurator->setDebugMode(true);
             $configurator->enableTracy($appDir . '/log');
             $configurator->setTempDirectory($appDir . '/tmp');
         } else {
+            $configurator->addConfig($appDir . '/config/credentials.neon');
             $configurator->setDebugMode(false);
             $configurator->enableTracy('/var/log/www-marks');
             $configurator->setTempDirectory('/tmp/www-marks/nette-temp');
         }
-
-        $configurator->addConfig($appDir . '/config/common.neon');
-        $configurator->addConfig($appDir . '/config/services.neon');
 
         return $configurator;
     }

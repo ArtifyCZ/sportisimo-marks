@@ -10,13 +10,33 @@ services:
       - www:/var/www/assets/
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - php
+      php:
+        condition: service_started
+    healthcheck:
+      test: curl --fail http://localhost || exit 1
+      timeout: 5s
+      retries: 5
   php:
     build: .
     container_name: 'sportisimo-marks-php'
     volumes:
       - www:/var/www-marks/www/assets/
       - ./log/:/var/log/www-marks/
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql
+    restart: always
+    container_name: 'sportisimo-marks-mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 15
+    ports:
+      - '3306:3306'
 
 volumes:
   www:

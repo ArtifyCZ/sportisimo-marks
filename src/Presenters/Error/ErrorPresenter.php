@@ -7,9 +7,14 @@ namespace Marks\Presenters\Error;
 use Nette;
 use Nette\Application\Request;
 use Nette\Application\Response;
+use Tracy\ILogger;
 
 final class ErrorPresenter implements Nette\Application\IPresenter
 {
+    public function __construct(
+        private ILogger $logger
+    ) {}
+
     function run(Request $request): Response
     {
         $exception = $request->getParameter('exception');
@@ -18,6 +23,7 @@ final class ErrorPresenter implements Nette\Application\IPresenter
             return new Nette\Application\Responses\ForwardResponse($request->setPresenterName("Error4xx"));
         }
 
-        die("Error");
+        $this->logger->log($exception, ILogger::EXCEPTION);
+        return new Nette\Application\Responses\TextResponse("Sorry, but the server has encountered an error. Try again, please, later.");
     }
 }
