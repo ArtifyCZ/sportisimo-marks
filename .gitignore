@@ -1,5 +1,5 @@
 vendor/
 log/
-temp/
+tmp/
 node_modules/
 www/assets/

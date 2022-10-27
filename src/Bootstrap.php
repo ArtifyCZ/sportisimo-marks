@@ -16,7 +16,7 @@ class Bootstrap
         if($debug) {
             $configurator->setDebugMode(true);
             $configurator->enableTracy($appDir . '/log');
-            $configurator->setTempDirectory($appDir . '/temp');
+            $configurator->setTempDirectory($appDir . '/tmp');
         } else {
             $configurator->setDebugMode(false);
             $configurator->enableTracy('/var/log/www-marks');

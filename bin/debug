@@ -6,4 +6,6 @@ npm i
 
 npm run dev&
 
+mkdir -p log tmp
+
 DEBUG="TRUE" php -S localhost:8000 -t www/ www/index.php
