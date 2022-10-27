@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Marks\Presenters;
+namespace Marks\Presenters\Error;
 
 use Nette;
 use Nette\Application\Request;
