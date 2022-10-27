@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "sass": "^1.55.0"
+  },
+  "scripts": {
+    "build": "sass styles/main.scss www/assets/main.css",
+    "dev": "sass --watch styles/main.scss www/assets/main.css"
+  }
+}

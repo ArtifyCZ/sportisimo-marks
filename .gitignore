@@ -1,3 +1,5 @@
 vendor/
 log/
 temp/
+node_modules/
+www/assets/

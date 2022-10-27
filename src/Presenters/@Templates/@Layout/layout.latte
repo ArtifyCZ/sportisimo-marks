@@ -1,9 +1,30 @@
+{templateType Marks\Presenters\BaseTemplate}
 <!DOCTYPE html>
 <html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title n:snippet="title">{block title}Marks{/block}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/assets/main.css">
+</head>
 <body>
-<p>This is layout.</p>
-<div>
-    {block content}{/block}
-</div>
+    <header>
+        <div class="left">SRP</div>
+        <a class="right" n:href="logout!">Odhlásit ({$username})</a>
+    </header>
+    <nav></nav>
+    <main n:snippet="pageContent">
+        {block content}{/block}
+    </main>
+
+    <!-- SCRIPTS -->
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="application/javascript" src="https://unpkg.com/naja@2/dist/Naja.min.js"></script>
+    <script type="application/javascript">
+        naja.uiHandler.selector = ':not(.synchronous)'
+    </script>
+    {block scripts}{/block}
+    <script type="application/javascript">naja.initialize()</script>
 </body>
 </html>
