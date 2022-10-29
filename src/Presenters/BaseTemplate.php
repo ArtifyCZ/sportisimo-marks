@@ -2,9 +2,9 @@
 
 namespace Marks\Presenters;
 
-use Nette\Bridges\ApplicationLatte\Nodes\TemplatePrintNode;
+use Nette\Bridges\ApplicationLatte\Template;
 
-class BaseTemplate extends TemplatePrintNode
+class BaseTemplate extends Template
 {
     public string $username;
 }

@@ -1,0 +1,15 @@
+{templateType Marks\Presenters\Marks\MarksTemplate}
+{block content}
+<section>
+    Značky
+</section>
+<article>
+    <ul class="collection with-header">
+        <li class="collection-header">
+            Název
+        </li>
+        {foreach $marks as $mark}
+            {control markRow $mark}
+        {/foreach}
+    </ul>
+</article>

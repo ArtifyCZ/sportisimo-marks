@@ -1,0 +1,27 @@
+{templateType Marks\Presenters\Marks\MarkRowControlTemplate}
+<li class="collection-item">
+    {if $edit == $mark->id}
+        {form editForm}
+            <input type="hidden" name="id" value="{$mark->id}">
+            <div class="row valign-wrapper">
+                <div class="input-field col s5">
+                    <input type="text" name="name" maxlength="256" value="{$mark->name}" />
+                </div>
+                <div class="col s5">
+                </div>
+                <div class="col s1">
+                    <button class="btn waves-effect green" type="submit">Uložit</button>
+                </div>
+                <div class="col s1">
+                    <a class="btn waves-effect red" n:href="edit! null">Zrušit</a>
+                </div>
+            </div>
+        {/form}
+    {else}
+        {$mark->name}
+        <span class="secondary-content">
+            <a n:href="edit! $mark->id">Upravit</a> |
+            <a n:href="delete! $mark->id">Smazat</a>
+        </span>
+    {/if}
+</li>

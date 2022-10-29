@@ -3,3 +3,4 @@ log/
 tmp/
 node_modules/
 www/assets/
+!www/assets/Naja.min.js

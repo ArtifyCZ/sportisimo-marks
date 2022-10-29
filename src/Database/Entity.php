@@ -11,6 +11,12 @@ abstract class Entity
 
     protected ActiveRow $row;
 
+    /**
+     * Contains pending changes
+     * @var array
+     */
+    protected array $pending;
+
     public function __get(string $name): mixed
     {
         return $this->row->__get($name);
@@ -18,7 +24,7 @@ abstract class Entity
 
     public function __set(string $name, mixed $value): void
     {
-        $this->row->__set($name, $value);
+        $this->pending[$name] = $value;
     }
 
     public function __isset(string $name): bool
@@ -26,9 +32,13 @@ abstract class Entity
         return $this->row->__isset($name);
     }
 
-    public function __unset(string $name)
+    /**
+     * Saves all pending changes
+     * @return void
+     */
+    public function save(): void
     {
-        $this->row->__unset($name);
+        $this->row->update($this->pending);
     }
 
     public static abstract function fromActiveRow(ActiveRow $activeRow): self;

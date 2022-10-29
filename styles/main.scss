@@ -3,7 +3,7 @@ $section-height: 4rem;
 $nav-width: 5rem;
 
 body {
-  background-color: #dcd4d4;
+  background-color: rgba(220, 216, 216, 0.18);
   padding: 0;
   font-size: 18px;
 }
@@ -16,6 +16,7 @@ header {
   left: 0;
   right: 0;
   padding: 0;
+  z-index: 100;
   .left {
     padding: 1rem 2rem;
     font-size: 2rem;
@@ -55,10 +56,21 @@ section {
   height: $section-height;
   padding: 1rem 1rem 1rem 2rem;
   font-size: 1.5rem;
+  position: sticky;
+  top: $header-height;
+  z-index: 100;
 }
 
 article {
   height: max-content;
   background-color: rgba(197, 197, 197, 0.18);
   padding: 30px;
+  & > * {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+a {
+  cursor: pointer;
 }
