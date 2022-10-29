@@ -3,10 +3,13 @@
 <section>
     Značky
 </section>
-<article>
+<article n:snippet="marks">
     <ul class="collection with-header">
         <li class="collection-header">
             Název
+            <span class="secondary-content">
+                <a n:href="refresh!">Obnovit</a>
+            </span>
         </li>
         {foreach $marks as $mark}
             {control markRow $mark}

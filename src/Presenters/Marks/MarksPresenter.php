@@ -27,4 +27,9 @@ class MarksPresenter extends BasePresenter
     protected function createComponentMarkRow(): MarkRowControl {
         return new MarkRowControl($this->marks);
     }
+
+    public function handleRefresh(): void
+    {
+        $this->redrawControl('marks');
+    }
 }

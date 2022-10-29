@@ -69,8 +69,27 @@ class MarkRowControl extends Control
         $this->edit = $id;
     }
 
-    public function handleDelete(int $id): void
+    /**
+     * @throws AbortException
+     */
+    public function handleDelete(?int $id): void
     {
-        die();
+        if($id == null) {
+            return;
+        }
+
+        if($id < 1) {
+            die();
+        }
+
+        $mark = $this->marks->get($id);
+        if($mark == null) {
+            die();
+        }
+
+        $mark->delete();
+        $mark->save();
+
+        $this->redirect('edit!', [null]);
     }
 }
