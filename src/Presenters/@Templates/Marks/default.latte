@@ -6,7 +6,12 @@
 <article n:snippet="marks">
     <ul class="collection with-header">
         <li class="collection-header">
-            Název
+            <a class="black-text" n:href="sort! !$reversed">
+                Název
+                <i class="material-icons">
+                    {$reversed ? 'arrow_upward' : 'arrow_downward'}
+                </i>
+            </a>
             <span class="secondary-content">
                 <a n:href="refresh!">Obnovit</a>
             </span>

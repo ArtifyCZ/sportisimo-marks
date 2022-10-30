@@ -2,7 +2,6 @@
 
 namespace Marks\Presenters\Marks;
 
-use Marks\Mark\Mark;
 use Marks\Mark\MarksPaged;
 use Marks\Presenters\BaseTemplate;
 
@@ -26,4 +25,10 @@ class MarksTemplate extends BaseTemplate
      * @var bool
      */
     public bool $showLastPage;
+
+    /**
+     * If the list should be reversed
+     * @var bool
+     */
+    public bool $reversed;
 }

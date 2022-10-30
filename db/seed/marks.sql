@@ -61,3 +61,5 @@ VALUES  (1, 'Abus'),
         (58, 'Kross'),
         (59, 'Level'),
         (60, 'La Siesta');
+INSERT INTO mark (id, name)
+VALUES  (61, 'Olympia');

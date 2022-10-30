@@ -2,6 +2,7 @@
 
 namespace Marks\Presenters\Marks;
 
+use JetBrains\PhpStorm\NoReturn;
 use Marks\Mark\Mark;
 use Marks\Mark\MarkFacade;
 use Marks\Presenters\BasePresenter;
@@ -17,6 +18,12 @@ class MarksPresenter extends BasePresenter
 
     #[Persistent] public int $page = 1;
 
+    /**
+     * If the list should be reversed
+     * @var bool
+     */
+    #[Persistent] public bool $reverse = false;
+
     public function __construct(
         private readonly MarkFacade $marks
     ) {
@@ -28,11 +35,13 @@ class MarksPresenter extends BasePresenter
      */
     public function renderDefault(): void
     {
-        $all = $this->marks->pagedSorted($this->page);
+        $all = $this->marks->pagedSorted($this->page, 4, $this->reverse);
         if($all->pages < $this->page) {
             $this->redirect('page!', [1]);
         }
         $this->template->marks = $all;
+
+        $this->template->reversed = $this->reverse;
 
         if($all->pages <= 5) {
             $this->template->showFirstPage = false;
@@ -73,5 +82,14 @@ class MarksPresenter extends BasePresenter
 
         $this->page = $page;
         $this->redrawControl('marks');
+    }
+
+    /**
+     * @throws AbortException
+     */
+    #[NoReturn] public function handleSort(bool $reverse): void
+    {
+        $this->reverse = $reverse;
+        $this->redirect('page!', [1]);
     }
 }
