@@ -11,8 +11,28 @@
                 <a n:href="refresh!">Obnovit</a>
             </span>
         </li>
-        {foreach $marks as $mark}
+        {foreach $marks->marks as $mark}
             {control markRow $mark}
         {/foreach}
+    </ul>
+
+    <ul class="pagination center-align">
+        {if $showFirstPage}
+            <li class="waves-effect">
+                <a n:href="page! 1">1</a>
+            </li>
+            ...
+        {/if}
+        {foreach $pageNums as $page}
+            <li class="{$marks->page == $page ? 'active' : 'waves-effect'}">
+                <a n:href="page! $page">{$page}</a>
+            </li>
+        {/foreach}
+        {if $showLastPage}
+            ...
+            <li class="waves-effect">
+                <a n:href="page! $marks->pages">{$marks->pages}</a>
+            </li>
+        {/if}
     </ul>
 </article>
