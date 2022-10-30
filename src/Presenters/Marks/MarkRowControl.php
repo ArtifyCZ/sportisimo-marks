@@ -79,7 +79,7 @@ class MarkRowControl extends Control
         }
 
         if($id < 1) {
-            die();
+            $this->redirect('delete!', [null]);
         }
 
         $mark = $this->marks->get($id);
