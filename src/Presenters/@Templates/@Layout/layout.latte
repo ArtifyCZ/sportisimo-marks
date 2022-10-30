@@ -4,14 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title n:snippet="title">{block title}Marks{/block}</title>
+    <title n:snippet="title">{block title}SRP{/block}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
     <header>
-        <div class="left">SRP</div>
+        <div class="left">
+            <a class="black-text" n:href="Home:default">SRP</a>
+        </div>
         <a class="right" n:href="logout!">Odhlásit ({$username})</a>
     </header>
     <nav></nav>
