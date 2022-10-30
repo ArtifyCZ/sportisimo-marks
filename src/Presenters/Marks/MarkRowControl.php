@@ -84,7 +84,7 @@ class MarkRowControl extends Control
 
         $mark = $this->marks->get($id);
         if($mark == null) {
-            die();
+            $this->redirect('delete!', [null]);
         }
 
         $mark->delete();
