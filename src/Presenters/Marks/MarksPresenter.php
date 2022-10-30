@@ -20,6 +20,7 @@ class MarksPresenter extends BasePresenter
     public function __construct(
         private readonly MarkFacade $marks
     ) {
+        parent::__construct();
     }
 
     /**
@@ -61,10 +62,13 @@ class MarksPresenter extends BasePresenter
         $this->redrawControl('marks');
     }
 
+    /**
+     * @throws AbortException
+     */
     public function handlePage(int $page): void
     {
         if($page < 1) {
-            die();
+            $this->redirect('page!', [1]);
         }
 
         $this->page = $page;
