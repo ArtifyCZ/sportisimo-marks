@@ -52,7 +52,7 @@ class MarkRowControl extends Control
         $name = $data->name;
 
         if($id < 1) {
-            die();
+            $this->redirect('edit!', [null]);
         }
 
         $mark = $this->marks->get($id);
