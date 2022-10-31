@@ -65,4 +65,24 @@ class MarkFacade
         $marks = $this->getOffsetSortedLimit(($page - 1) * $itemsPerPage, $itemsPerPage, $reverse);
         return new MarksPaged($page, $pages, $marks);
     }
+
+    public function getByName(string $name): ?Mark
+    {
+        $mark = $this->marks->where('name', $name)->limit(1)->fetch();
+        if($mark == null) {
+            return null;
+        }
+
+        return Mark::fromActiveRow($mark);
+    }
+
+    public function insert(string $name): ?Mark
+    {
+        $mark = $this->marks->insert(['name' => $name]);
+        if($mark == null) {
+            return null;
+        }
+
+        return Mark::fromActiveRow($mark);
+    }
 }

@@ -5,6 +5,22 @@
     Značky
 </section>
 <article>
+    <button class="waves-effect waves-light btn modal-trigger" data-target="addMark"><i class="material-icons">add</i> Přidat značku</button>
+    <div id="addMark" class="modal">
+        {form addMarkForm}
+            <div class="modal-content">
+                <h4>Přidat značku</h4>
+                <div class="input-field">
+                    <input type="text" id="addMarkFormName" name="name" maxlength="256">
+                    <label for="addMarkFormName">Jméno značky</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect green modal-close" type="submit">Uložit</button> |
+                <button class="btn waves-effect red modal-close">Zrušit</button>
+            </div>
+        {/form}
+    </div>
     {snippet marksList}
         {control markCollection}
     {/snippet}

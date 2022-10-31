@@ -37,9 +37,9 @@ class MarkRowControl extends Control
     {
         $form = new Form;
         $form->addHidden('id')->value = $this->edit;
-        $form->addText('name', 'Name', maxLength: 256);
-        $form->addSubmit('send', 'Uložit')
-            ->setHtmlAttribute('class', 'btn waves-effect green');
+        $form->addText('name', 'Name', maxLength: 256)
+            ->setRequired('Jméno značky nemůže být prázdné');
+        $form->addSubmit('send', 'Uložit');
         $form->onSuccess[] = [$this, 'editFormSucceed'];
         return $form;
     }
@@ -76,6 +76,7 @@ class MarkRowControl extends Control
     public function handleDelete(?int $id): void
     {
         if($id == null) {
+            $this->redrawControl('pageContent');
             return;
         }
 
