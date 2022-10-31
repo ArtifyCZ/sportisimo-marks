@@ -2,6 +2,7 @@
 
 namespace Marks\Presenters\Marks;
 
+use JetBrains\PhpStorm\NoReturn;
 use Marks\Mark\Mark;
 use Marks\Mark\MarkFacade;
 use Nette\Application\AbortException;
@@ -46,7 +47,7 @@ class MarkRowControl extends Control
     /**
      * @throws AbortException
      */
-    public function editFormSucceed(Form $form, $data): void
+    #[NoReturn] public function editFormSucceed(Form $form, $data): void
     {
         $id = $data->id;
         $name = $data->name;

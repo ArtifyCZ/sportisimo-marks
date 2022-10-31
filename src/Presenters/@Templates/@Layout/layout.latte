@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="left">
-            <a class="black-text" n:href="Home:default">SRP</a>
+            <a class="black-text synchronous" n:href="Home:default">SRP</a>
         </div>
         <a class="right" n:href="logout!">Odhlásit ({$username})</a>
     </header>
@@ -28,6 +28,9 @@
         naja.uiHandler.selector = ':not(.synchronous)'
     </script>
     {block scripts}{/block}
-    <script type="application/javascript">naja.initialize()</script>
+    <script type="application/javascript">
+        naja.initialize()
+        M.AutoInit()
+    </script>
 </body>
 </html>
