@@ -19,7 +19,12 @@ class MarkFacade
 
     public function get(int $id): ?Mark
     {
-        return Mark::fromActiveRow($this->marks->get($id));
+        $mark = $this->marks->get($id);
+        if($mark == null) {
+            return null;
+        }
+
+        return Mark::fromActiveRow($mark);
     }
 
     /**
