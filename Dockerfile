@@ -18,9 +18,9 @@ RUN docker-php-ext-install pdo pdo_mysql
 
 RUN php composer.phar install
 
-RUN npm install
-
 COPY . /var/www-marks
+
+RUN npm install
 
 ENV DEBUG="FALSE"
 
